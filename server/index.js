@@ -1,3 +1,4 @@
+const dotenv = require('dotenv')
 const express = require('express') 
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -7,11 +8,9 @@ const app=express()
 app.use(cors())
 app.use(express.json())
 
-mongoose.connect("mongodb+srv://Tester:Test@cluster0.uj51vhq.mongodb.net/CRUD?retryWrites=true&w=majority").then(()=>{
-    console.log("Connection Succesful");
-}).catch((e)=>{
-    console.log(e);
-})
+dotenv.config({path:'./config.env'});
+require('./db/conn');
+
 
 app.get("/",(req,res)=>{
     UserModel.find({})
@@ -30,7 +29,7 @@ app.put("/UpdateEmployee/:id",(req,res)=>{
     const id=req.params.id;
     UserModel.findByIdAndUpdate({_id:id},{
         Name:req.body.Name,
-        EmployeeID:req.body.EmployeeID,
+        Age:req.body.Age,
         Department:req.body.Department,
         Position:req.body.Position,
         Salary:req.body.Salary,

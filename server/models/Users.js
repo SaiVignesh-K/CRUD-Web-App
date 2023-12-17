@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 const UserSchema= new mongoose.Schema({
     Name: String,
-    EmployeeID: Number,
+    Age: Number,
     Department: String,
     Position: String,
     Salary: Number,

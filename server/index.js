@@ -14,15 +14,15 @@ require('./db/conn');
 
 app.get("/",(req,res)=>{
     UserModel.find({})
-    .then(users=>res.json(users))
-    .catch(err=>res.catch(err))
+    .then(users=>res.status(200).json(users))
+    .catch(err=>res.status(400).json({ error: err.message }))
 })
 
 app.get("/GetUser/:id",(req,res)=>{
     const id=req.params.id;
     UserModel.findById({_id:id})
-    .then(users=>res.json(users))
-    .catch(err=>res.catch(err))
+    .then(users=>res.status(200).json(users))
+    .catch(err=>res.status(400).json({ error: err.message }))
 })
 
 app.put("/UpdateEmployee/:id",(req,res)=>{
@@ -35,25 +35,23 @@ app.put("/UpdateEmployee/:id",(req,res)=>{
         Salary:req.body.Salary,
         Contact:req.body.Contact
     })
-    .then(users=>res.json(users))
-    .catch(err=>res.catch(err))
+    .then(users=>res.status(200).json(users))
+    .catch(err=>res.status(400).json({ error: err.message }))
     
 })
 
 app.delete("/DeleteEmployee/:id",(req,res)=>{
     const id=req.params.id;
     UserModel.findByIdAndDelete({_id:id})
-    .then(users=>res.json(users))
-    .catch(err=>res.catch(err))
+    .then(users=>res.status(200).json(users))
+    .catch(err=>res.status(400).json({ error: err.message }))
 })
 
 app.post("/AddEmployee",(req,res)=>{
     UserModel.create(req.body)
-    .then(users=>res.json(users))
-    .catch(err=>res.json(err))
+    .then(users=>res.status(200).json(users))
+    .catch(err=>res.status(400).json({ error: err.message }))
 })
-
-
 
 
 app.listen(3001,()=>{

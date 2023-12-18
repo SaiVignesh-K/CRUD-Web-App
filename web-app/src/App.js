@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateUser from './components/CreateUserpage';
 import View from './components/Viewpage';
 import Profile from './components/Profilepage';
+import UpdateUser from './components/UpdateUser';
 function App() {
   return (
     <>
@@ -11,7 +12,7 @@ function App() {
         {/* <Route path="/" element={<Landingpage/>}/> */}
         <Route path="/View" element={<View/>}/>
         <Route path="/CreateUser" element={<CreateUser/>}/>
-        {/* <Route path="/UpdateUser" element={<UpdateUser/>}/> */}
+        <Route path="/UpdateUser" element={<UpdateUser/>}/>
         <Route path="/Profile" element={<Profile/>}/>
       </Routes>
     </BrowserRouter>

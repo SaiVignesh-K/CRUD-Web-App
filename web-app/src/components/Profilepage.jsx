@@ -55,16 +55,30 @@ const Profile = () => {
     }
   }, [employee]);
 
-  const handleEdit = () => {
-    console.log('Edit button clicked');
+  function handleEdit(employeeId) {
+    navigate('/UpdateUser', { state: { employeeId: employee._id } });
   };
 
   const handleDelete = () => {
-    console.log('Delete button clicked');
+    const confirmDelete = window.confirm('Are you sure you want to delete this employee?');
+    if (confirmDelete) {
+      fetch(`http://localhost:3001/DeleteEmployee/${employeeId}`, {
+        method: 'DELETE',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Employee deleted:', data.message);
+          navigate('/view');
+        })
+        .catch(error => {
+          console.error('Error deleting employee:', error);
+        });
+    }
   };
+  
 
   const handleBack = () => {
-    navigate('/view', { state: { employeeId } }); // Replace `/view` with your actual view route
+    navigate('/view', { state: { employeeId } }); 
   };
 
   if (isLoading) {

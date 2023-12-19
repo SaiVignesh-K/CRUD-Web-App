@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const CreateUser = () => {
     const [name, setName] = useState("");
@@ -8,6 +9,7 @@ const CreateUser = () => {
     const [position, setPosition] = useState("");
     const [salary, setSalary] = useState("");
     const [contact, setContact] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -32,22 +34,23 @@ const CreateUser = () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                // Handle the response from the server if needed
                 console.log("User added:", data);
-                // Optionally, you can reset the form fields after successful submission
                 setName("");
                 setAge("");
                 setDepartment("");
                 setPosition("");
                 setSalary("");
                 setContact("");
+                navigate('/view');
             })
             .catch((error) => {
                 console.error("Error:", error);
-                // Handle errors if any
             });
     };
 
+    const handleBack = () => {
+        navigate('/View'); 
+    };
 
     return (
         <div
@@ -59,7 +62,10 @@ const CreateUser = () => {
                 background: "#d3d3d3"
             }}
         >
-            <div style={{ background: "white", border: "1px solid #000" }}>
+            <div style={{ background: "white", border: "1px solid #000",padding:"10px" }}>
+            <button className="btn btn-outline-primary me-2"  onClick={handleBack}>
+                <i className="bi bi-arrow-left"></i> Back
+              </button>
                 <form style={{padding:"10px"}} onSubmit={handleSubmit}>
                     <h2 style={{ textAlign: "center", margin:"0", marginBottom:"10px"}}>Add Employee</h2>
 

@@ -66,8 +66,8 @@ const UpdateUser = () => {
     };
 
     const handleBack = () => {
-        navigate('/Profile', { state: { employeeId } }); // Replace `/view` with your actual view route
-      };
+        navigate('/Profile', { state: { employeeId } });
+ };
 
     return (
         <div

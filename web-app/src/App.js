@@ -4,12 +4,13 @@ import CreateUser from './components/CreateUserpage';
 import View from './components/Viewpage';
 import Profile from './components/Profilepage';
 import UpdateUser from './components/UpdateUser';
+import Home from './components/Landingpage';
 function App() {
   return (
     <>
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Landingpage/>}/> */}
+        <Route path="/" element={<Home/>}/>
         <Route path="/View" element={<View/>}/>
         <Route path="/CreateUser" element={<CreateUser/>}/>
         <Route path="/UpdateUser" element={<UpdateUser/>}/>
